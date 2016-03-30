@@ -16,11 +16,17 @@ import android.widget.TextView;
 
 import com.app.shop.shopapp.R;
 import com.app.shop.shopapp.fragment.FragmentTabAdapter;
-import com.app.shop.shopapp.fragment.TabShopFm;
-import com.app.shop.shopapp.fragment.TabProFm;
-import com.app.shop.shopapp.fragment.TabOAFm;
 import com.app.shop.shopapp.fragment.TabHouseFm;
+import com.app.shop.shopapp.fragment.TabOAFm;
 import com.app.shop.shopapp.fragment.TabPersonFm;
+import com.app.shop.shopapp.fragment.TabProFm;
+import com.app.shop.shopapp.fragment.TabShopFm;
+import com.app.shop.shopapp.utils.Constant;
+import com.jiongbull.jlog.JLog;
+
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
+import net.tsz.afinal.http.AjaxParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +54,23 @@ public class MainActivity extends FragmentActivity {
         fragments.add(new TabHouseFm());
         fragments.add(new TabPersonFm());
 
+        FinalHttp fh=new FinalHttp();
+        JLog.d(Constant.HOST_URL + "user/login");
+        AjaxParams params=new AjaxParams();
+        params.put("user_name","13266816551");
+        params.put("password","123456");
+        fh.post(Constant.HOST_URL + "user/login",params, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String o) {
+                super.onSuccess(o);
+                JLog.json(o);
+            }
 
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+            }
+        });
         rgs = (RadioGroup) findViewById(R.id.tabs_rg);
         mTitleDesc = (TextView) findViewById(R.id.tv_loal_des);
         mLocal = (Button) findViewById(R.id.btn_local_addr);

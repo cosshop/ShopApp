@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <declare-styleable name="GridView">
+        <attr name="grid_column" format="integer"/>
+        <attr name="grid_as_square" format="boolean"/>
+        <attr name="grid_divider_vertical" format="dimension"/>
+        <attr name="grid_divider_horizontal" format="dimension"/>
+    </declare-styleable>
     <declare-styleable name="SDWebview">
         <attr name="url" format="reference|string"/>
     </declare-styleable>

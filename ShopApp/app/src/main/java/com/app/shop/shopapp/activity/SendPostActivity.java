@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,11 +17,21 @@ import com.app.shop.shopapp.R;
 import com.app.shop.shopapp.base.activity.BaseActivity;
 import com.app.shop.shopapp.config.AppDir;
 import com.app.shop.shopapp.fragment.DialogFragment;
+import com.app.shop.shopapp.model.Response;
+import com.app.shop.shopapp.utils.Constant;
 import com.app.shop.shopapp.utils.FileUtil;
 import com.app.shop.shopapp.utils.ImgUtils;
 import com.app.shop.shopapp.utils.ToastUtil;
+import com.app.shop.shopapp.view.PieceViewGroup;
+import com.google.gson.Gson;
+import com.jiongbull.jlog.JLog;
+
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
+import net.tsz.afinal.http.AjaxParams;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -47,24 +58,28 @@ public class SendPostActivity extends BaseActivity implements  DialogFragment.ID
     private Bitmap protraitBitmap;
     private String protraitPath;
     private String theLarge;
-    private ImageView iv_image_1;
-    private ImageView iv_image_2;
     private int clickWhich=1;
+    private PieceViewGroup relateGridView;
+    AjaxParams uploadParams = new AjaxParams();
     @Override
     protected int bindLayout() {
         return R.layout.activity_send_post;
     }
+    private EditText et_input_content;
+    private EditText et_input_title;
 
     @Override
     public void initView() {
         super.initView();
         setTheme(R.style.ActionSheetStyleIOS7);
         TextView tv_right=findViewByIdU(R.id.tv_right);
+        et_input_content=findViewByIdU(R.id.et_input_content);
+        et_input_title=findViewByIdU(R.id.et_input_title);
         tv_right.setOnClickListener(this);
         tv_right.setVisibility(View.VISIBLE);
         tv_right.setText("发布");
-        iv_image_1=findViewByIdU(R.id.iv_image_1);
-        iv_image_2=findViewByIdU(R.id.iv_image_2);
+        relateGridView = (PieceViewGroup) findViewById(R.id.relate);
+
     }
 
     @Override
@@ -73,33 +88,65 @@ public class SendPostActivity extends BaseActivity implements  DialogFragment.ID
         setTitle("发帖");
 
     }
-
+    ImageView imagePieceView;
     @Override
     public void setListener() {
         super.setListener();
-        iv_image_1.setOnClickListener(this);
-        iv_image_2.setOnClickListener(this);
+        relateGridView.setOnAskViewListener(new PieceViewGroup.OnAskViewListener() {
+            @Override
+            public void onAddView() {
+                if(picCount>5){
+                 ToastUtil.showToast("图片已达上限");
+                }else{
+                    imagePieceView = new ImageView(SendPostActivity.this);
+                    DialogFragment.createBuilder(SendPostActivity.this, getSupportFragmentManager())
+                            .setCancelButtonTitle("取消")
+                            .setCancelableOnTouchOutside(true)
+                            .setListener(SendPostActivity.this).setOtherButtonTitles(getResources().getStringArray(R.array.ps_select)).show();
+                }
+
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_right:
-                ToastUtil.showToast("发布成功");
-                break;
-            case R.id.iv_image_1:
-                clickWhich=1;
-                DialogFragment.createBuilder(this, getSupportFragmentManager())
-                        .setCancelButtonTitle("取消")
-                        .setCancelableOnTouchOutside(true)
-                        .setListener(this).setOtherButtonTitles(getResources().getStringArray(R.array.ps_select)).show();
-                break;
-            case R.id.iv_image_2:
-                clickWhich=2;
-                DialogFragment.createBuilder(this, getSupportFragmentManager())
-                        .setCancelButtonTitle("取消")
-                        .setCancelableOnTouchOutside(true)
-                        .setListener(this).setOtherButtonTitles(getResources().getStringArray(R.array.ps_select)).show();
+                if(TextUtils.isEmpty(et_input_title.getText().toString().trim())){
+                    ToastUtil.showToast("请输入标题");
+                    return;
+                }
+                if(TextUtils.isEmpty(et_input_content.getText().toString().trim())){
+                    ToastUtil.showToast("请输入内容");
+                    return;
+                }
+                uploadParams.put("title",et_input_title.getText().toString().trim());
+                uploadParams.put("content",et_input_content.getText().toString().trim());
+                uploadParams.put("user_name", "13266816551");
+                FinalHttp fh=new FinalHttp();
+                JLog.d(Constant.HOST_URL + "topic/add");
+                fh.post(Constant.HOST_URL + "topic/add", uploadParams, new AjaxCallBack<String>() {
+                @Override
+                public void onSuccess(String o) {
+                    super.onSuccess(o);
+                    JLog.json(o);
+                    Response telInfo =new Gson().fromJson(o,Response.class);
+                    if(telInfo.isSuccess()){
+                        ToastUtil.showToast("提交成功");
+                        setResult(Activity.RESULT_OK);
+                        finish(true);
+                    }else{
+                        ToastUtil.showToast(telInfo.msg);
+                    }
+                }
+
+                @Override
+                public void onFailure(Throwable t, int errorNo, String strMsg) {
+                    super.onFailure(t, errorNo, strMsg);
+                    ToastUtil.showToast("上传失败");
+                }
+            });
                 break;
         }
     }
@@ -231,6 +278,7 @@ public class SendPostActivity extends BaseActivity implements  DialogFragment.ID
         cropUri = Uri.fromFile(protraitFile);
         return this.cropUri;
     }
+    private int picCount;
     /**
      * 上传新照片
      */
@@ -238,13 +286,38 @@ public class SendPostActivity extends BaseActivity implements  DialogFragment.ID
         // 获取头像缩略图
         if (!TextUtils.isEmpty(protraitPath) && protraitFile.exists()) {
             protraitBitmap = ImgUtils.loadImgThumbnail(protraitPath, 300, 300);
-            if(clickWhich==1){
-                iv_image_1.setImageBitmap(protraitBitmap);
-                if(iv_image_2.getVisibility()==View.GONE)iv_image_2.setVisibility(View.VISIBLE);
-
-            }else{
-                iv_image_2.setImageBitmap(protraitBitmap);
+           FinalHttp finalHttp= new FinalHttp();
+            AjaxParams params = new AjaxParams();
+            try {
+                params.put("file", protraitFile);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
+            JLog.d(Constant.HOST_URL + "topic/uploadFile");
+            finalHttp.post(Constant.HOST_URL + "topic/uploadFile",params,new AjaxCallBack<String>(){
+                @Override
+                public void onSuccess(String s) {
+                    super.onSuccess(s);
+                    Response telInfo =new Gson().fromJson(s,Response.class);
+                    if(telInfo.isSuccess()){
+                        uploadParams.put("pic"+picCount,(String)telInfo.data);
+                        picCount++;
+                        ToastUtil.showToastLong("上传成功");
+                    }else{
+                        ToastUtil.showToastLong("上传失败");
+                    }
+                    JLog.json(s);
+
+                }
+
+                @Override
+                public void onFailure(Throwable t, int errorNo, String strMsg) {
+                    super.onFailure(t, errorNo, strMsg);
+                    ToastUtil.showToastLong("上传失败");
+                }
+            });
+            imagePieceView.setImageBitmap(protraitBitmap);
+            relateGridView.addView(imagePieceView);
         } else {
             ToastUtil.showToastLong("图像不存在，上传失败");
         }

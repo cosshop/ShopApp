@@ -54,7 +54,7 @@ public class FeeInfoActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        Intent intent=new Intent(this,PayFeeActivity.class);
+        Intent intent=new Intent(this,PayFeeListActivity.class);
         switch (v.getId()){
             case R.id.iv_guarantee_money:
                 intent.putExtra(PAY_FEE_TYPE,PAY_GUARANTEE);

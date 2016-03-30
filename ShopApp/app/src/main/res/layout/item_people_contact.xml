@@ -67,28 +67,17 @@
             android:layout_marginLeft="@dimen/margin_10"
             android:layout_marginRight="@dimen/margin_10"
             android:orientation="horizontal">
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_people_info"/>
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:scaleType="centerCrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_people_info"/>
-            </FrameLayout>
+            <com.app.shop.shopapp.view.ExGridView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/exg_favor"
+                android:background="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:grid_divider_vertical="10dp"
+                app:grid_divider_horizontal="10dp"
+              >
+            </com.app.shop.shopapp.view.ExGridView>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

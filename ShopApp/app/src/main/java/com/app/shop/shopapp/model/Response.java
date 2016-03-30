@@ -15,7 +15,7 @@ public class Response<T> {
     public T data;
 
     public boolean isSuccess() {
-        return code == 1;
+        return code == 200;
     }
 
 

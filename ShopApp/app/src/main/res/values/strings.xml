@@ -32,7 +32,11 @@
     <string name="str_person_wyf">我的物业费</string>
     <string name="str_person_cjcs">迟交次数</string>
     <string name="str_person_zhqy">住房权益</string>
-
+    <string name="minute_ago">分钟前</string>
+    <string name="seconds_ago">秒前</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="hour_ago">小时前</string>
     <string name="str_pro_bx">报修</string>
     <string name="str_pro_tsjy">投诉建议</string>
     <string name="str_pro_jf">缴费</string>

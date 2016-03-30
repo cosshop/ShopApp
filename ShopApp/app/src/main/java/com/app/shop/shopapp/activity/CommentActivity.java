@@ -9,7 +9,15 @@ import android.widget.TextView;
 
 import com.app.shop.shopapp.R;
 import com.app.shop.shopapp.base.activity.BaseActivity;
+import com.app.shop.shopapp.model.Response;
+import com.app.shop.shopapp.utils.Constant;
 import com.app.shop.shopapp.utils.ToastUtil;
+import com.google.gson.Gson;
+import com.jiongbull.jlog.JLog;
+
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
+import net.tsz.afinal.http.AjaxParams;
 
 /**
  * <请描述这个类是干什么的>
@@ -21,6 +29,8 @@ import com.app.shop.shopapp.utils.ToastUtil;
 public class CommentActivity extends BaseActivity {
     private EditText et_input;
     private TextView tv_count;
+    private String club_id="";
+    public final static String CLUB_ID="club_id";
     @Override
     protected int bindLayout() {
         return R.layout.activity_comment;
@@ -30,6 +40,7 @@ public class CommentActivity extends BaseActivity {
     public void initView() {
         super.initView();
         setTitle("评论");
+        club_id=getIntent().getStringExtra(CLUB_ID);
         et_input=findViewByIdU(R.id.et_input);
         tv_count=findViewByIdU(R.id.tv_count);
         TextView tv_right=findViewByIdU(R.id.tv_right);
@@ -63,7 +74,35 @@ public class CommentActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        ToastUtil.showToast("发表成功");
-        finish(true);
+        if(TextUtils.isEmpty(et_input.getText().toString().trim())){
+            ToastUtil.showToast("请输入内容");
+            return;
+        }
+        FinalHttp fh=new FinalHttp();
+        AjaxParams uploadParams = new AjaxParams();
+        JLog.d(Constant.HOST_URL + "topic/comment");
+        uploadParams.put("user_name", "13266816551");
+        uploadParams.put("club_id", club_id);
+        uploadParams.put("content",et_input.getText().toString().trim());
+        fh.post(Constant.HOST_URL + "topic/comment", uploadParams, new AjaxCallBack<String>() {
+            @Override
+            public void onSuccess(String o) {
+                super.onSuccess(o);
+                JLog.json(o);
+                Response telInfo = new Gson().fromJson(o, Response.class);
+                if (telInfo.isSuccess()) {
+                    ToastUtil.showToast("提交成功");
+                    finish(true);
+                } else {
+                    ToastUtil.showToast(telInfo.msg);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                ToastUtil.showToast("上传失败");
+            }
+        });
     }
 }

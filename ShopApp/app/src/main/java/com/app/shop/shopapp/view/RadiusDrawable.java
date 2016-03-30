@@ -11,7 +11,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
 /**
- * Created by caifangmao on 15/4/22.
  */
 public class RadiusDrawable extends Drawable {
 
