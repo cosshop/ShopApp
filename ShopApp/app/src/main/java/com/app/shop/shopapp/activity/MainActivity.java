@@ -1,5 +1,6 @@
 package com.app.shop.shopapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +9,7 @@ import android.text.Spanned;
 import android.text.style.TextAppearanceSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class MainActivity extends FragmentActivity {
     private Button mLocal;
     private ImageView mIvLocal;
     private Button mLogin;
+    private ImageButton mSetting;
     public List<Fragment> fragments = new ArrayList<Fragment>();
 
     @Override
@@ -51,6 +54,14 @@ public class MainActivity extends FragmentActivity {
         mLocal = (Button) findViewById(R.id.btn_local_addr);
         mIvLocal = (ImageView) findViewById(R.id.iv_local_ico);
         mLogin = (Button) findViewById(R.id.btn_login);
+        mSetting = (ImageButton) findViewById(R.id.btn_setting);
+        mSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainActivity.this,SettingActivity.class);
+                startActivity(intent);
+            }
+        });
         FragmentTabAdapter tabAdapter = new FragmentTabAdapter(this, fragments, R.id.tab_content, rgs);
         tabAdapter.setOnRgsExtraCheckedChangedListener(new FragmentTabAdapter.OnRgsExtraCheckedChangedListener(){
             @Override
@@ -62,6 +73,7 @@ public class MainActivity extends FragmentActivity {
                         mLogin.setVisibility(View.VISIBLE);
                         mIvLocal.setVisibility(View.VISIBLE);
                         mLocal.setVisibility(View.VISIBLE);
+                        mSetting.setVisibility(View.GONE);
                         mTitleDesc.setText(getString(R.string.str_bottom_shop));
                         break;
                     case 1:
@@ -69,6 +81,7 @@ public class MainActivity extends FragmentActivity {
                         mLogin.setVisibility(View.GONE);
                         mIvLocal.setVisibility(View.GONE);
                         mLocal.setVisibility(View.GONE);
+                        mSetting.setVisibility(View.GONE);
                         mTitleDesc.setText(getString(R.string.str_bottom_pro));
                         break;
                     case 2:
@@ -76,6 +89,7 @@ public class MainActivity extends FragmentActivity {
                         mLogin.setVisibility(View.GONE);
                         mIvLocal.setVisibility(View.GONE);
                         mLocal.setVisibility(View.GONE);
+                        mSetting.setVisibility(View.GONE);
                         mTitleDesc.setText(getString(R.string.str_bottom_oa)+"系统");
                         break;
                     case 3:
@@ -83,6 +97,7 @@ public class MainActivity extends FragmentActivity {
                         mLogin.setVisibility(View.GONE);
                         mIvLocal.setVisibility(View.GONE);
                         mLocal.setVisibility(View.GONE);
+                        mSetting.setVisibility(View.GONE);
                         SpannableString styledText = new SpannableString("亲爱的小宝，你好");
                         styledText.setSpan(new TextAppearanceSpan(getApplicationContext(), R.style.txt_style), 0, 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         styledText.setSpan(new TextAppearanceSpan(getApplicationContext(), R.style.txt_style_font), 3, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -97,6 +112,7 @@ public class MainActivity extends FragmentActivity {
                         mIvLocal.setVisibility(View.GONE);
                         mLocal.setVisibility(View.GONE);
                         mTitleDesc.setText(getString(R.string.str_bottom_person));
+                        mSetting.setVisibility(View.VISIBLE);
                         break;
                 }
             }

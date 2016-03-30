@@ -20,32 +20,33 @@ import com.app.shop.shopapp.utils.TitleManger;
 public class SettingActivity extends Activity implements View.OnClickListener {
 
     private TextView tv_check_update;
-    private  TextView tv_about_us;
+    private TextView tv_about_us;
     private TextView tv_clean_ribbish;
-    private  TextView tv_message_remind;
-    private  TextView tv_account_safety;
-    private  Button btn_setting_exit;
+    private TextView tv_message_remind;
+    private TextView tv_account_safety;
+    private Button btn_setting_exit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_activity);
-        TitleManger.show(SettingActivity.this,"设置",false,false);
+        TitleManger.show(SettingActivity.this, "设置", false, false);
         initView();
     }
 
     private void initView() {
-
-
         tv_account_safety = (TextView) findViewById(R.id.tv_account_safety);
-        tv_account_safety.setOnClickListener(this);
         tv_message_remind = (TextView) findViewById(R.id.tv_message_remind);
-
-        tv_clean_ribbish = (TextView) findViewById(R.id.tv_clean_ribbish);
-        tv_clean_ribbish.setOnClickListener(SettingActivity.this);
+        tv_clean_ribbish = (TextView) findViewById(R.id.tv_clean_cache);
         tv_check_update = (TextView) findViewById(R.id.tv_check_update);
-
         tv_about_us = (TextView) findViewById(R.id.tv_about_us);
-   btn_setting_exit= (Button) findViewById(R.id.btn_setting_exit);
+        btn_setting_exit = (Button) findViewById(R.id.btn_setting_exit);
+
+        tv_account_safety.setOnClickListener(this);
+        tv_message_remind.setOnClickListener(this);
+        tv_clean_ribbish.setOnClickListener(SettingActivity.this);
+        tv_check_update.setOnClickListener(this);
+        tv_about_us.setOnClickListener(this);
         btn_setting_exit.setOnClickListener(SettingActivity.this);
 
     }
@@ -53,28 +54,36 @@ public class SettingActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        switch (v.getId())
-        {
-            case R.id.tv_clean_ribbish:
+        switch (v.getId()) {
+            case R.id.tv_account_safety:
+                Intent intent = new Intent(SettingActivity.this, AccountSafetyActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_message_remind:
+                Toast.makeText(SettingActivity.this, "此功能尚未完善", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.tv_clean_cache:
                 showCleanCacheDialog();
-            break;
+                break;
+            case R.id.tv_check_update:
+                Toast.makeText(SettingActivity.this, "此功能尚未完善", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.tv_about_us:
+                Toast.makeText(SettingActivity.this, "此功能尚未完善", Toast.LENGTH_LONG).show();
+                break;
             case R.id.btn_setting_exit:
                 showExitAccountDialog();
-            break;
-            case R.id.tv_account_safety:
-                Intent intent=new Intent(SettingActivity.this,AccountSafetyActivity.class);
-                startActivity(intent);
-            break;
+                break;
         }
 
     }
 
     private void showExitAccountDialog() {
 
-        final AlertDialog builder=new AlertDialog.Builder(SettingActivity.this).create();
+        final AlertDialog builder = new AlertDialog.Builder(SettingActivity.this).create();
 
         builder.show();
-        Window window=builder.getWindow();
+        Window window = builder.getWindow();
         window.setContentView(R.layout.exit_account_activity);
         window.findViewById(R.id.ll_exit_current_account).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,12 +92,12 @@ public class SettingActivity extends Activity implements View.OnClickListener {
             }
         });
 
-    window.findViewById(R.id.ll_exit_current_account_cancle).setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            builder.dismiss();
-    }
-});
+        window.findViewById(R.id.ll_exit_current_account_cancle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.dismiss();
+            }
+        });
 
     }
 
@@ -98,7 +107,7 @@ public class SettingActivity extends Activity implements View.OnClickListener {
         dialog.show();
         Window window = dialog.getWindow();
         window.setContentView(R.layout.exit_dialog);
-        window.findViewById(R.id.btn_dialog_ok).setOnClickListener(new View.OnClickListener() {
+        window.findViewById(R.id.tv_dialog_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -126,11 +135,22 @@ public class SettingActivity extends Activity implements View.OnClickListener {
             }
         });
 
-        window.findViewById(R.id.btn_dialog_cancle).setOnClickListener(new View.OnClickListener() {
+        window.findViewById(R.id.tv_dialog_cancle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        tv_check_update = null;
+        tv_about_us = null;
+        tv_clean_ribbish = null;
+        tv_message_remind = null;
+        tv_account_safety = null;
+        btn_setting_exit = null;
+        super.onDestroy();
     }
 }

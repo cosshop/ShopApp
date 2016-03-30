@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ecebeb"
+    android:orientation="vertical">
 
 
     <include
@@ -13,111 +15,115 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:layout_marginTop="1dp"
-        android:background="@android:color/white">
-
-
-    <TextView
-        style="@style/text_black_20dp"
-        android:text="照明设施"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        />
-        <TextView
-            style="@style/text_gray_20dp"
-            android:text="已处理"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp"
+        android:background="@android:color/white"
         android:paddingBottom="5dp"
-        android:layout_marginTop="1dp"
-        android:background="@android:color/white">
+        android:paddingTop="5dp">
 
 
         <TextView
             style="@style/text_black_20dp"
-            android:text="维修基金项目"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            />
+            android:text="照明设施" />
+
         <TextView
             style="@style/text_gray_20dp"
-            android:text="没有保修"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:text="已处理" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:layout_marginTop="1dp"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
 
 
         <TextView
             style="@style/text_black_20dp"
-            android:text="电梯维护"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            />
+            android:text="维修基金项目" />
+
         <TextView
             style="@style/text_gray_20dp"
-            android:text="没有保修"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:text="没有保修" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:layout_marginTop="1dp"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
 
 
         <TextView
             style="@style/text_black_20dp"
-            android:text="管道施"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            />
+            android:text="电梯维护" />
+
         <TextView
             style="@style/text_gray_20dp"
-            android:text="没有保修"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:text="没有保修" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:layout_marginTop="1dp"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
 
 
         <TextView
             style="@style/text_black_20dp"
-            android:text="其他公共设施"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            />
+            android:text="管道施" />
+
         <TextView
             style="@style/text_gray_20dp"
-            android:text="没有保修"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:text="没有保修" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@android:color/white"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+
+        <TextView
+            style="@style/text_black_20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:text="其他公共设施" />
+
+        <TextView
+            style="@style/text_gray_20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="没有保修" />
 
     </RelativeLayout>
 

@@ -47,6 +47,11 @@
                 android:textSize="@dimen/font_size_20" />
         </LinearLayout>
 
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
         <Button
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
@@ -56,6 +61,18 @@
             android:gravity="center"
             android:textColor="@color/color_title_font"
             android:textSize="@dimen/font_size_20" />
+        <ImageButton
+            android:id="@+id/btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/tabperson_setting"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
+    </FrameLayout>
+
+
     </LinearLayout>
 <!--
 </LinearLayout>-->

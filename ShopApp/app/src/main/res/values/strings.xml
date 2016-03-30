@@ -10,6 +10,11 @@
     <string name="str_bottom_house">房屋出租</string>
     <string name="str_bottom_person">个人中心</string>
 
+    <string name="str_setting_safe">账号安全</string>
+    <string name="str_setting_message">消息提醒</string>
+    <string name="str_setting_clean">清理缓存</string>
+    <string name="str_setting_update">检查更新</string>
+    <string name="str_setting_about">关于我们</string>
 
     <string name="str_oa_stock">采购</string>
     <string name="str_oa_reimburse">报销</string>
@@ -82,9 +87,6 @@
         <item>从相册选择</item>
         <item>拍照</item>
     </string-array>
-
-
-
 
 
     <string name="text_ack_msg">Read</string>
@@ -347,7 +349,7 @@
     <string name="dismiss_group">Dismiss group</string>
     <string name="add_public_group_chat">Add public group</string>
     <string name="gorup_not_found">Can not find this group</string>
-    <string name= "no_more_messages">no more messages</string>
+    <string name="no_more_messages">no more messages</string>
     <string name="join_public_group">Join public group</string>
     <string name="chatroom_allow_owner_leave">Allow chatroom owner leave</string>
     <string name="group_id">Group ID</string>

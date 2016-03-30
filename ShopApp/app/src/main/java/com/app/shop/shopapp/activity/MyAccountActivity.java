@@ -16,5 +16,7 @@ public class MyAccountActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myaccount_activity);
         TitleManger.show(this,"我的账号",false,false);
+
+
     }
 }
