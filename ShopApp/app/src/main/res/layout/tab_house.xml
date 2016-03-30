@@ -1,125 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:background="#e4e7e7"
-        >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="160dp">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="房屋出租"
+        android:textColor="#434343"
+        android:textSize="20sp" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="157.5dip">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@mipmap/img_house_def" />
 
-        <TextView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="157.5dip"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_house_def" />
+
+        <LinearLayout
+
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="重庆月光小区"
-            android:id="@+id/textView"
-            android:background="#32000000"
-            android:gravity="center_vertical"
-            android:textSize="@dimen/font_size_16"
-            android:textColor="@android:color/white"
-            android:padding="@dimen/fragment_banner_margin"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true" />
-    </RelativeLayout>
+            android:layout_gravity="bottom"
+            android:background="#80000000"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="重庆月光小区"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:visibility="visible" />
+
+
+        </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.0">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:background="@android:color/white"
-            android:layout_weight="1.0">
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/icon_house_lease"
-                android:id="@+id/iv_house_lease" />
+            <LinearLayout
+                android:id="@+id/ll_chuzu"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/str_house_lease"
-                android:layout_marginTop="10dp"
-                android:textSize="@dimen/font_size_16"
-                android:id="@+id/tv_house_lease" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_house_lease" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="出租"
+                    android:textColor="#434343"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="fill_parent"
+                android:background="#E4E7E7"/>
+
+            <LinearLayout
+                android:id="@+id/ll_chushou"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_house_sale" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="出售"
+                    android:textColor="#434343"
+                    android:textSize="20sp" />
+            </LinearLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#E4E7E7"/>
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:layout_weight="1.0">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/icon_house_sale"
-                android:id="@+id/iv_house_sale" />
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/str_house_sale"
-                android:textSize="@dimen/font_size_16"
-                android:id="@+id/tv_house_sale" />
+            <LinearLayout
+                android:id="@+id/ll_ershou"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_house_second" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="二手置换"
+                    android:textColor="#434343"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#E4E7E7"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#E4E7E7"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="1dp"
-        android:layout_weight="1.0">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:background="@android:color/white"
-            android:layout_weight="1.0">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/icon_house_second"
-                android:id="@+id/iv_house_second" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/str_house_second"
-                android:textSize="@dimen/font_size_16"
-                android:id="@+id/tv_house_second" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1.0"/>
-
-    </LinearLayout>
 </LinearLayout>
 

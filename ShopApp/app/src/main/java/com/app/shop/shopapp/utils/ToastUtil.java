@@ -33,6 +33,14 @@ public class ToastUtil extends Toast {
 		toast.setText(msg);
 		toast.show();
 	}
+
+	public static void show(Context context, String info) {
+		Toast.makeText(context, info, Toast.LENGTH_LONG).show();
+	}
+
+	public static void show(Context context, int info) {
+		Toast.makeText(context, info, Toast.LENGTH_LONG).show();
+	}
 	/**
 	 * 
 	 * @param msg
