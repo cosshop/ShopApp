@@ -15,6 +15,10 @@
     <string name="str_setting_clean">清理缓存</string>
     <string name="str_setting_update">检查更新</string>
     <string name="str_setting_about">关于我们</string>
+    <string name="str_pls_input">请输入手机号码</string>
+    <string name="str_password">密码</string>
+    <string name="str_register_now">立即注册</string>
+    <string name="str_forget_password">忘记密码?</string>
 
     <string name="str_oa_stock">采购</string>
     <string name="str_oa_reimburse">报销</string>

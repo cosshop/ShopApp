@@ -31,7 +31,7 @@ import net.tsz.afinal.http.AjaxParams;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements View.OnClickListener{
     /**
      * Called when the activity is first created.
      */
@@ -58,8 +58,8 @@ public class MainActivity extends FragmentActivity {
         JLog.d(Constant.HOST_URL + "user/login");
         AjaxParams params=new AjaxParams();
         params.put("user_name","13266816551");
-        params.put("password","123456");
-        fh.post(Constant.HOST_URL + "user/login",params, new AjaxCallBack<String>() {
+        params.put("password", "123456");
+        fh.post(Constant.HOST_URL + "user/login", params, new AjaxCallBack<String>() {
             @Override
             public void onSuccess(String o) {
                 super.onSuccess(o);
@@ -76,14 +76,9 @@ public class MainActivity extends FragmentActivity {
         mLocal = (Button) findViewById(R.id.btn_local_addr);
         mIvLocal = (ImageView) findViewById(R.id.iv_local_ico);
         mLogin = (Button) findViewById(R.id.btn_login);
+        mLogin.setOnClickListener(this);
         mSetting = (ImageButton) findViewById(R.id.btn_setting);
-        mSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(MainActivity.this,SettingActivity.class);
-                startActivity(intent);
-            }
-        });
+        mSetting.setOnClickListener(this);
         FragmentTabAdapter tabAdapter = new FragmentTabAdapter(this, fragments, R.id.tab_content, rgs);
         tabAdapter.setOnRgsExtraCheckedChangedListener(new FragmentTabAdapter.OnRgsExtraCheckedChangedListener(){
             @Override
@@ -143,11 +138,19 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-
-
-
-
-
-
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_setting:{
+                Intent intent =new Intent(MainActivity.this,SettingActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.btn_login:{
+                Intent intent =new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);}
+            break;
+        }
+    }
 }
 
